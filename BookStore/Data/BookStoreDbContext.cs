@@ -20,13 +20,5 @@
         public DbSet<Projection> Projections { get; set; }
         public DbSet<Song> Songs { get; set; }
         public DbSet<User> Users { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(DatabaseConfiguration.ConnectionString);
-            }
-        }
     }
 }

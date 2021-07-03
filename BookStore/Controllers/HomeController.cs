@@ -1,4 +1,5 @@
 ﻿using BookStore.Models;
+using BookStore.Models.User;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -29,6 +30,14 @@ namespace BookStore.Controllers
         }
 
         public IActionResult Login() => View();
+
+        public IActionResult Register() => View();
+
+        [HttpPost]
+        public IActionResult Register(UserRegistrationFormModel model)
+        {
+            var modelValidator = 
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
