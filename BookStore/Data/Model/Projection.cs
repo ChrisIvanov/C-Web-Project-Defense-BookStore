@@ -12,5 +12,8 @@ namespace BookStore.Data.Model
         public string MovieTitle { get; set; }
 
         public DateTime TimeOfProjection { get; set; }
+
+        public string MovieId { get; set; }
+        public Movie Movie { get; set; }
     }
 }

@@ -11,8 +11,6 @@ namespace BookStore.Data.Model
 
         public string BookTitle { get; set; }
 
-        public Author Author { get; set; }
-
         public int Pages { get; set; }
 
         public string ImagePath { get; set; }
@@ -23,6 +21,9 @@ namespace BookStore.Data.Model
 
         public string Description { get; set; }
 
+        public string AuthorId { get; set; }
+        public Author Author { get; set; }
+        
         public double Recomendations { get; set; }
     }
 }

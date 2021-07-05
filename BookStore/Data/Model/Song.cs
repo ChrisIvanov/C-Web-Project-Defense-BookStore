@@ -9,5 +9,8 @@
         public string Name { get; set; }
 
         public TimeSpan SongDuration { get; set; }
+
+        public string AlbumId { get; set; }
+        public Music Album { get; set; }
     }
 }
