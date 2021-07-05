@@ -21,6 +21,88 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (User == null)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Register">Register</a>
+                            </li>
+                        }
+
+                    </ul>
+                    @if (true)
+                    {
+
+                        <div class="page-header-main ">
+                            <nav class="main-nav" aria-label="Main menu">
+                                <ul class="main-menu">
+                                    <li class="top-level-entry-container">
+                                        <button id="items-button" type="button" class="top-level-entry" aria-haspopup="true" aria-expanded="false">Items</button>
+                                        <ul class="items" role="menu" aria-labelledby="items-button">
+                                            <li role="none">
+                                                <a tabindex="-1" href="/Shop/AllBooks" role="menuitem">Books</a>
+                                            </li>
+                                            <li role="none">
+                                                <a tabindex="-1" href="/Shop/AllMusic" role="menuitem">Music</a>
+                                            </li>
+                                            <li role="none">
+                                                <a tabindex="-1" href="/Shop/AllGames" role="menuitem">Games</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="top-level-entry-container">
+                                        <button id="cinema-program-button" type="button" class="top-level-entry" aria-haspopup="true" aria-expanded="false">Cinema &amp; Program</button>
+                                        <ul class="cinema-program" role="menu" aria-labelledby="cinema-program-button">
+                                            <li role="none">
+                                                <a tabindex="-1" href="/en-US/docs/Learn" role="menuitem">Learn web development</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="top-level-entry-container">
+                                        <button id="feedback-button" type="button" class="top-level-entry" aria-haspopup="true" aria-expanded="false">Feedback</button>
+                                        <ul class="feedback " role="menu" aria-labelledby="feedback-button">
+                                            <li role="none">
+                                                <a tabindex="-1" href="/en-US/docs/MDN/Contribute/Feedback" role="menuitem">Send Feedback</a>
+                                            </li>
+                                            <li role="none">
+                                                <a tabindex="0" href="/en-US/docs/MDN/Contribute" role="menuitem">Contribute to MDN</a>
+                                            </li>
+                                            <li role="none">
+                                                <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://github.com/mdn/content/issues/new" role="menuitem">Report a content issue 🌐</a>
+                                            </li>
+                                            <li role="none">
+                                                <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://github.com/mdn/yari/issues/new" role="menuitem">Report a platform issue 🌐</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <div class="header-search">
+                                <form action="/en-US/search" class="search-form" role="search">
+                                    <label for="main-q" class="visually-hidden">Search The Store</label>
+                                    <input type="search" name="q" id="main-q" class="search-input-field" placeholder="Search The Store" pattern="(.|\s)*\S(.|\s)*" required="">
+                                    <input type="submit" class="ghost search-button" aria-label="Search" value="">
+                                </form>
+                            </div>
+                            <div class="auth-container">
+                                <a rel="nofollow" class="signin-link" href="/en-US/signin?next=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCascade">Sign in</a>
+                            </div>
+                        </div>
+
+
+
+
+                        @*
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                            </li>*@
+                    }
+                    <ul>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>

@@ -1,15 +1,14 @@
-﻿using BookStore.Models;
-using BookStore.Models.User;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿
 namespace BookStore.Controllers
 {
+    using BookStore.Models;
+    using BookStore.Models.User;
+    using BookStore.Service;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using System.Diagnostics;
+    using System.Linq;
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -29,15 +28,7 @@ namespace BookStore.Controllers
             return View();
         }
 
-        public IActionResult Login() => View();
-
-        public IActionResult Register() => View();
-
-        [HttpPost]
-        public IActionResult Register(UserRegistrationFormModel model)
-        {
-            var modelValidator = 
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

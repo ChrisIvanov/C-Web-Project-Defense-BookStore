@@ -1,6 +1,7 @@
 namespace BookStore
 {
     using BookStore.Data;
+    using BookStore.Service;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,12 +26,20 @@ namespace BookStore
                 (options => options.UseSqlServer(Configuration
                 .GetConnectionString("BookStore")));
 
+            services.AddScoped<IValidator, Validator>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+
             services.AddControllersWithViews();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BookStoreDbContext dbContext)
+        public void Configure(
+            IValidator validator,
+            IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            BookStoreDbContext dbContext, 
+            IPasswordHasher passwordHasher)
         {
             if (env.IsDevelopment())
             {

@@ -95,6 +95,9 @@ namespace BookStore.Data.Migrations
                     b.Property<string>("Genre")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Pages")
                         .HasColumnType("int");
 

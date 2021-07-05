@@ -15,6 +15,8 @@ namespace BookStore.Data.Model
 
         public int Pages { get; set; }
 
+        public string ImagePath { get; set; }
+
         public string Genre { get; set; }
 
         public decimal Price { get; set; }

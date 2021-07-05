@@ -2,9 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Cart
     {
+        [Required]
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         public ICollection<Book> Books { get; set; } = new List<Book>();

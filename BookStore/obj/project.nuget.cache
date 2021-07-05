@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "0f8rimnKGAl2VoRV/Pzdqs2PkprNmgx/OU/QRsixgosnYLj8wcOAzgfZ7MdPUzqHV9LzUuTNdUywQxVsmvwcxQ==",
+  "dgSpecHash": "Xh005xiGAoJhA2PDNxksERaOHQDR59bUZ5puYCTe3TKoFqkAWEGd+EqOR2QSoQMeVC2Z3VgziJGprDhQrMt4pw==",
   "success": true,
   "projectFilePath": "G:\\Engeneering and IT\\repos\\(6) C# Web\\Web Project\\BookStore\\BookStore\\BookStore.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\krist\\.nuget\\packages\\bootstrap\\5.0.2\\bootstrap.5.0.2.nupkg.sha512",
     "C:\\Users\\krist\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\krist\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\krist\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
