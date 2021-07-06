@@ -6,7 +6,7 @@
     {
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
-        public string GameTitle { get; set; }
+        public string GameTitle { get; set; } 
 
         public string Genre { get; set; }
 

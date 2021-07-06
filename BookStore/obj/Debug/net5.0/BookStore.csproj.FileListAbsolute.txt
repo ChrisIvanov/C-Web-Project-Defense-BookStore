@@ -148,3 +148,4 @@ G:\Engeneering and IT\repos\(6) C# Web\Web Project\BookStore\BookStore\obj\Debug
 G:\Engeneering and IT\repos\(6) C# Web\Web Project\BookStore\BookStore\obj\Debug\net5.0\Razor\Views\User\Login.cshtml.g.cs
 G:\Engeneering and IT\repos\(6) C# Web\Web Project\BookStore\BookStore\obj\Debug\net5.0\Razor\Views\User\Register.cshtml.g.cs
 G:\Engeneering and IT\repos\(6) C# Web\Web Project\BookStore\BookStore\obj\Debug\net5.0\Razor\Views\Shop\AllBooks.cshtml.g.cs
+G:\Engeneering and IT\repos\(6) C# Web\Web Project\BookStore\BookStore\obj\Debug\net5.0\Razor\Views\Cinema\Projections.cshtml.g.cs

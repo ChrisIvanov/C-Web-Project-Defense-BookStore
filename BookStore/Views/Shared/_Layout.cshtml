@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,12 +7,62 @@
     <title>@ViewData["Title"] - BookStore</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .dropdown {
+            float: left;
+            overflow: visible;
+        }
+
+            .dropdown .dropbtn {
+                font-size: 16px;
+                border: none;
+                outline: none;
+                color: black;
+                padding: 14px 16px;
+                background-color: inherit;
+                font-family: inherit;
+                margin: 0;
+            }
+
+            .navbar a:hover, .dropdown:hover .dropbtn {
+                background-color: lightgray;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                float: none;
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ddd;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookStore</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication1</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,8 +72,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        @if (User == null)
+                        @if (!User.IsSignedIn())
                         {
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
                             </li>
@@ -30,87 +82,39 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Register">Register</a>
                             </li>
                         }
-
                     </ul>
-                    @if (true)
+                    @if (User.IsSignedIn())
                     {
-
-                        <div class="page-header-main ">
-                            <nav class="main-nav" aria-label="Main menu">
-                                <ul class="main-menu">
-                                    <li class="top-level-entry-container">
-                                        <button id="items-button" type="button" class="top-level-entry" aria-haspopup="true" aria-expanded="false">Items</button>
-                                        <ul class="items" role="menu" aria-labelledby="items-button">
-                                            <li role="none">
-                                                <a tabindex="-1" href="/Shop/AllBooks" role="menuitem">Books</a>
-                                            </li>
-                                            <li role="none">
-                                                <a tabindex="-1" href="/Shop/AllMusic" role="menuitem">Music</a>
-                                            </li>
-                                            <li role="none">
-                                                <a tabindex="-1" href="/Shop/AllGames" role="menuitem">Games</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="top-level-entry-container">
-                                        <button id="cinema-program-button" type="button" class="top-level-entry" aria-haspopup="true" aria-expanded="false">Cinema &amp; Program</button>
-                                        <ul class="cinema-program" role="menu" aria-labelledby="cinema-program-button">
-                                            <li role="none">
-                                                <a tabindex="-1" href="/en-US/docs/Learn" role="menuitem">Learn web development</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="top-level-entry-container">
-                                        <button id="feedback-button" type="button" class="top-level-entry" aria-haspopup="true" aria-expanded="false">Feedback</button>
-                                        <ul class="feedback " role="menu" aria-labelledby="feedback-button">
-                                            <li role="none">
-                                                <a tabindex="-1" href="/en-US/docs/MDN/Contribute/Feedback" role="menuitem">Send Feedback</a>
-                                            </li>
-                                            <li role="none">
-                                                <a tabindex="0" href="/en-US/docs/MDN/Contribute" role="menuitem">Contribute to MDN</a>
-                                            </li>
-                                            <li role="none">
-                                                <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://github.com/mdn/content/issues/new" role="menuitem">Report a content issue 🌐</a>
-                                            </li>
-                                            <li role="none">
-                                                <a tabindex="-1" target="_blank" rel="noopener noreferrer" href="https://github.com/mdn/yari/issues/new" role="menuitem">Report a platform issue 🌐</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <div class="header-search">
-                                <form action="/en-US/search" class="search-form" role="search">
-                                    <label for="main-q" class="visually-hidden">Search The Store</label>
-                                    <input type="search" name="q" id="main-q" class="search-input-field" placeholder="Search The Store" pattern="(.|\s)*\S(.|\s)*" required="">
-                                    <input type="submit" class="ghost search-button" aria-label="Search" value="">
-                                </form>
-                            </div>
-                            <div class="auth-container">
-                                <a rel="nofollow" class="signin-link" href="/en-US/signin?next=%2Fen-US%2Fdocs%2FWeb%2FCSS%2FCascade">Sign in</a>
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                All Items
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="/Shop/AllBooks">Books</a>
+                                <a href="/Shop/AllMusic">Music</a>
+                                <a href="/Shop/AllGames">Games</a>
                             </div>
                         </div>
-
-
-
-
-                        @*
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
-                            </li>*@
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                Cinema Program
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="/Shop/AllBooks">Books</a>
+                                <a href="/Shop/AllMusic">Music</a>
+                                <a href="/Shop/AllGames">Games</a>
+                            </div>
+                        </div>
                     }
-                    <ul>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+
+
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

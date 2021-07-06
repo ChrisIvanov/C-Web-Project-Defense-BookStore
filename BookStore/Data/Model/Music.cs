@@ -13,6 +13,6 @@
 
         public decimal Price { get; set; }
 
-        public ICollection<Song> Songs { get; set; }
+        public ICollection<Song> Songs { get; set; } = new List<Song>();
     }
 }

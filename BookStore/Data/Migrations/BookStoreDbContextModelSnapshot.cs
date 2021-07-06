@@ -81,9 +81,11 @@ namespace BookStore.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AuthorId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BookTitle")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CartId")
@@ -93,6 +95,7 @@ namespace BookStore.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Genre")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImagePath")
@@ -121,7 +124,14 @@ namespace BookStore.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Carts");
                 });
@@ -217,8 +227,14 @@ namespace BookStore.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AvailableSeats")
+                        .HasColumnType("int");
+
                     b.Property<string>("MovieId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("MoviePosterPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MovieTitle")
                         .HasColumnType("nvarchar(max)");
@@ -238,7 +254,7 @@ namespace BookStore.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("MusicId")
+                    b.Property<string>("AlbumId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
@@ -249,7 +265,7 @@ namespace BookStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MusicId");
+                    b.HasIndex("AlbumId");
 
                     b.ToTable("Songs");
                 });
@@ -259,30 +275,30 @@ namespace BookStore.Data.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CartId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CartId");
 
                     b.ToTable("Users");
                 });
@@ -306,13 +322,24 @@ namespace BookStore.Data.Migrations
                 {
                     b.HasOne("BookStore.Data.Model.Author", "Author")
                         .WithMany("AuthorBooks")
-                        .HasForeignKey("AuthorId");
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BookStore.Data.Model.Cart", null)
                         .WithMany("Books")
                         .HasForeignKey("CartId");
 
                     b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("BookStore.Data.Model.Cart", b =>
+                {
+                    b.HasOne("BookStore.Data.Model.User", "User")
+                        .WithOne("Cart")
+                        .HasForeignKey("BookStore.Data.Model.Cart", "UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("BookStore.Data.Model.Game", b =>
@@ -338,25 +365,20 @@ namespace BookStore.Data.Migrations
 
             modelBuilder.Entity("BookStore.Data.Model.Projection", b =>
                 {
-                    b.HasOne("BookStore.Data.Model.Movie", null)
+                    b.HasOne("BookStore.Data.Model.Movie", "Movie")
                         .WithMany("Projections")
                         .HasForeignKey("MovieId");
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("BookStore.Data.Model.Song", b =>
                 {
-                    b.HasOne("BookStore.Data.Model.Music", null)
+                    b.HasOne("BookStore.Data.Model.Music", "Album")
                         .WithMany("Songs")
-                        .HasForeignKey("MusicId");
-                });
+                        .HasForeignKey("AlbumId");
 
-            modelBuilder.Entity("BookStore.Data.Model.User", b =>
-                {
-                    b.HasOne("BookStore.Data.Model.Cart", "Cart")
-                        .WithMany()
-                        .HasForeignKey("CartId");
-
-                    b.Navigation("Cart");
+                    b.Navigation("Album");
                 });
 
             modelBuilder.Entity("BookStore.Data.Model.Author", b =>
@@ -383,6 +405,11 @@ namespace BookStore.Data.Migrations
             modelBuilder.Entity("BookStore.Data.Model.Music", b =>
                 {
                     b.Navigation("Songs");
+                });
+
+            modelBuilder.Entity("BookStore.Data.Model.User", b =>
+                {
+                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }

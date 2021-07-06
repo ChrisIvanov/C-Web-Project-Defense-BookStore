@@ -55,6 +55,7 @@ namespace BookStore
             dbContext.Database.EnsureCreated();
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();

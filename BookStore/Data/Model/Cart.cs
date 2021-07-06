@@ -17,5 +17,7 @@
 
         public ICollection<Game> Games { get; set; } = new List<Game>();
 
+        public string UserId { get; set; }
+        public User User { get; set; }
     }
 }
